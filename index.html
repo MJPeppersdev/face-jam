@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Face-Jam</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="styles/style.css" rel="stylesheet" type="text/css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.js"></script>
+    </head>
+
+        <div id="app">
+            <section class="setup">
+              <h2>Come on and Slam, and Welcome to Face-Jam</h2>
+              <div class="file">
+                <span>select an image:</span>
+                <input type="file" id="file" name="file" class="file__input" @change="handleFile">
+                <label class="file__label" for="file">+</label>
+                <p class="file__use" @click="useMine()">and your Face-Jam playlist will be generated. Enjoy!</p>
+              </div>
+              
+              <img v-if="image" class="setup__image" :src="image">
+              
+              <button v-if="playlist.length" @click="reset()">reset</button>
+          
+            </section>
+            <section class="player-container">
+              <div v-if="loading">loading…</div>
+              <div v-if="!loading && noFace">
+                <img src="https://i.pinimg.com/736x/c0/1e/05/c01e05b4c024ea22b18d38abf31aeb6c--life-photo-the-simpsons.jpg" alt="no face found">
+                <p>No face found. Try again?</p>
+                <button @click="resetImage">Reset</button>
+              </div>
+              <player :playlist="playlist" />
+            </section>
+          </div>
+          
+          <script type="text/x-template" id="player">
+            <div class="player">
+              <ol class="player__playlist">
+                <li v-if="!playlist.length">No songs found.</li>
+                <li class="player__track track" v-for="(song, index) in playlist" :key="song.trackId">
+                  <div class="track__actions">
+                    <i v-if="isSongPlaying(index)" class="material-icons" @click="playSong(index)" >pause_circle_outline</i>
+                    <i v-else class="material-icons" @click="playSong(index)">play_circle_outline</i>
+                  </div>
+                  <div class="track__artist">{{ song.artistName }}</div>
+                  <div class="track__name">{{ song.trackName }}</div>
+                </li>
+              </ol>
+              <div class="player__controls controls">
+                <div class="controls__progress" ref="player-progress"></div>
+                <div class="controls__actions">
+                  <button class="controls__button controls__skip controls__skip--prev" @click="previousSong()">
+                    <i class="material-icons">skip_previous</i>
+                  </button>
+                  <button class="controls__button controls__toggle" @click="togglePlay()">
+                    <i v-if="isPlaying" class="material-icons">pause</i>
+                    <i v-else class="material-icons">play_arrow</i>
+                  </button>
+                  <button class="controls__button controls__skip controls__skip--next" @click="nextSong()">
+                    <i class="material-icons">skip_next</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </script>
+          <script src="app.js"></script>
+          
+    
+</html>
