@@ -1,0 +1,210 @@
+* {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+*::before, *::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #111;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fff;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.setup {
+  background-color: #c0392b;
+  min-height: 100%;
+  padding: 0 30px;
+}
+.setup__image {
+  display: block;
+  max-width: 200px;
+}
+
+.file__input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.file__label {
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+  background-color: #c0392b;
+  height: 48px;
+  width: 48px;
+  border: 1px solid #e74c3c;
+  border-radius: 50%;
+  -webkit-transition: 0.3s all ease-out;
+  transition: 0.3s all ease-out;
+}
+.file__use {
+  color: #ffff7e;
+  font-size: 80%;
+}
+
+.file__input:focus + .file__label,
+.file__input + .file__label:hover {
+  background-color: #e74c3c;
+}
+
+.file__input:focus + .file__label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.file__input + .file__label * {
+  pointer-events: none;
+}
+
+.player-container {
+  background-color: #e74c3c;
+  min-height: 100%;
+  overflow: auto;
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+.player__playlist {
+  margin: 50px 30px 0;
+  padding: 0;
+  list-style: none;
+}
+.player__controls {
+  background-color: #e74c3c;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+}
+
+.track {
+  border-bottom: 1px dotted #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 8px;
+  width: 100%;
+}
+.track__actions {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50px;
+          flex: 0 0 50px;
+}
+.track__artist {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 25%;
+          flex: 1 0 25%;
+}
+.track__name {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 50%;
+          flex: 1 0 50%;
+}
+
+.controls {
+  overflow: hidden;
+}
+.controls__progress {
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  -webkit-transition: -webkit-transform 0.15s linear;
+  transition: -webkit-transform 0.15s linear;
+  transition: transform 0.15s linear;
+  transition: transform 0.15s linear, -webkit-transform 0.15s linear;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+.controls__actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 80px;
+}
+.controls__button {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+.controls__skip {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+}
+.controls__toggle {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  margin: 0 5px;
+  height: 60px;
+  width: 60px;
+}
+.controls__toggle i {
+  font-size: 3em;
+}
